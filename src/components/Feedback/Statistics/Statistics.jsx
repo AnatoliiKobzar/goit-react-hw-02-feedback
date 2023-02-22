@@ -9,17 +9,24 @@ export const Statistics = ({
   total,
   positivePercentage,
 }) => {
-  return total ? (
+  return (
     <div>
       <h2>Statistics</h2>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <Total>Total: {total}</Total>
-      <Total>Positive feedback: {positivePercentage.toFixed(0)}%</Total>
+
+      {total ? (
+        <div>
+          <p>Good: {good}</p>
+          <p>Neutral: {neutral}</p>
+          <p>Bad: {bad}</p>
+          <Total>Total: {total}</Total>
+          <Total>
+            Positive feedback: {positivePercentage.toFixed(0)}%
+          </Total>{' '}
+        </div>
+      ) : (
+        <p> There is no feedback</p>
+      )}
     </div>
-  ) : (
-    <h2>There is no feedback</h2>
   );
 };
 
