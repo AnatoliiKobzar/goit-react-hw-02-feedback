@@ -2,28 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Wrap } from './Feedback.styles';
 
-export const FeedbackOptions = ({
-  onLeaveFeedback: { good, neutral, bad },
-}) => {
+export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
+  const typeBtn = Object.keys(options);
   return (
     <Wrap>
-      <Button type="button" onClick={good}>
-        Good
-      </Button>
-      <Button type="button" onClick={neutral}>
-        Neutral
-      </Button>
-      <Button type="button" onClick={bad}>
-        Bad
-      </Button>
+      {typeBtn.map(button => {
+        return (
+          <Button
+            key={button}
+            type="button"
+            value={button}
+            onClick={onLeaveFeedback}
+          >
+            {button}
+          </Button>
+        );
+      })}
     </Wrap>
   );
 };
 
 FeedbackOptions.propTypes = {
-  onLeaveFeedback: PropTypes.shape({
-    good: PropTypes.func.isRequired,
-    neutral: PropTypes.func.isRequired,
-    bad: PropTypes.func.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+  options: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
   }).isRequired,
 };
