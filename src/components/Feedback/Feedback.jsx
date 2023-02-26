@@ -18,6 +18,16 @@ class Feedback extends Component {
     });
   };
 
+  resetStatistics = value => {
+    if (value) {
+      this.setState({
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      });
+    }
+  };
+
   countTotalFeedback() {
     const { good, neutral, bad } = this.state;
 
@@ -28,6 +38,20 @@ class Feedback extends Component {
     const { good } = this.state;
 
     return (good / this.countTotalFeedback()) * 100;
+  }
+
+  componentDidMount() {
+    const feedback = JSON.parse(localStorage.getItem('feedback'));
+
+    if (feedback) {
+      this.setState(feedback);
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state !== prevState) {
+      localStorage.setItem('feedback', JSON.stringify(this.state));
+    }
   }
 
   render() {
@@ -46,6 +70,7 @@ class Feedback extends Component {
           bad={bad}
           total={this.countTotalFeedback()}
           positivePercentage={this.countPositiveFeedbackPercentage()}
+          resetStatistics={this.resetStatistics}
         />
       </Section>
     );

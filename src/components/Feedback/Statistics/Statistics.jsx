@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Total } from './Statistics.styled';
+import { BtnWrap, Total } from './Statistics.styled';
+import { Button } from '../FeedbackOptions/Feedback.styles';
 
 export const Statistics = ({
   good,
@@ -8,6 +9,7 @@ export const Statistics = ({
   bad,
   total,
   positivePercentage,
+  resetStatistics,
 }) => {
   return (
     <div>
@@ -19,9 +21,17 @@ export const Statistics = ({
           <p>Neutral: {neutral}</p>
           <p>Bad: {bad}</p>
           <Total>Total: {total}</Total>
-          <Total>
-            Positive feedback: {positivePercentage.toFixed(1)}%
-          </Total>{' '}
+          <Total>Positive feedback: {positivePercentage.toFixed(1)}%</Total>
+          <BtnWrap>
+            <Button
+              type="button"
+              onClick={() => {
+                resetStatistics(true);
+              }}
+            >
+              Reset statistics
+            </Button>
+          </BtnWrap>
         </div>
       ) : (
         <p> There is no feedback</p>
@@ -36,4 +46,5 @@ Statistics.propTypes = {
   bad: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   positivePercentage: PropTypes.number.isRequired,
+  resetStatistics: PropTypes.func.isRequired,
 };
