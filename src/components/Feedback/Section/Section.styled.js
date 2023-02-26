@@ -8,3 +8,10 @@ export const SectionWrap = styled.section`
   color: #ffffff;
   background-color: #1e252b;
 `;
+
+export const Author = styled.section`
+  margin-top: 15px;
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+`;
