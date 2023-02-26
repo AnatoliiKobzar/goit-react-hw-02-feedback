@@ -20,7 +20,7 @@ export const Statistics = ({
           <p>Bad: {bad}</p>
           <Total>Total: {total}</Total>
           <Total>
-            Positive feedback: {positivePercentage.toFixed(0)}%
+            Positive feedback: {positivePercentage.toFixed(1)}%
           </Total>{' '}
         </div>
       ) : (
